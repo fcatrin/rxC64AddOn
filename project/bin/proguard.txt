@@ -1,0 +1,9 @@
+# view AndroidManifest.xml #generated:39
+-keep class atua.anddev.vicec64.DummyService { <init>(...); }
+
+# view AndroidManifest.xml #generated:15
+-keep class atua.anddev.vicec64.MainActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:31
+-keep class atua.anddev.vicec64.RestartMainActivity { <init>(...); }
+

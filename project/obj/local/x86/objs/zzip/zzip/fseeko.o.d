@@ -1,0 +1,30 @@
+obj/local/x86/objs/zzip/zzip/fseeko.o: jni/../jni/zzip/zzip/fseeko.c \
+ jni/../jni/zzip/include/zzip/fseeko.h \
+ jni/../jni/zzip/include/zzip/types.h jni/../jni/zzip/include/zzip/conf.h \
+ jni/../jni/zzip/include/zzip/_config.h \
+ jni/../jni/zzip/include/zzip/format.h \
+ jni/../jni/zzip/include/zzip/__hints.h \
+ jni/../jni/zzip/include/zzip/fetch.h \
+ jni/../jni/zzip/include/zzip/stdint.h \
+ jni/../jni/zzip/include/zzip/__mmap.h \
+ jni/../jni/zzip/include/zzip/__fnmatch.h
+
+jni/../jni/zzip/include/zzip/fseeko.h:
+
+jni/../jni/zzip/include/zzip/types.h:
+
+jni/../jni/zzip/include/zzip/conf.h:
+
+jni/../jni/zzip/include/zzip/_config.h:
+
+jni/../jni/zzip/include/zzip/format.h:
+
+jni/../jni/zzip/include/zzip/__hints.h:
+
+jni/../jni/zzip/include/zzip/fetch.h:
+
+jni/../jni/zzip/include/zzip/stdint.h:
+
+jni/../jni/zzip/include/zzip/__mmap.h:
+
+jni/../jni/zzip/include/zzip/__fnmatch.h:

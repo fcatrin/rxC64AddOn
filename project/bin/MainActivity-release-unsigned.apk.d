@@ -1,0 +1,21 @@
+/home/hydefus/x/vice_framework/project/bin/MainActivity-release-unsigned.apk : \
+/home/hydefus/x/vice_framework/project/bin/MainActivity.ap_ \
+/home/hydefus/x/vice_framework/project/bin/classes.dex \
+/home/hydefus/x/vice_framework/project/libs/x86/libsdl_native_helpers.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libsdl_main.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libguichan.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libsdl_image.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libsdl-1.2.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libapplication.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libzzip.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libsdl_ttf.so \
+/home/hydefus/x/vice_framework/project/libs/x86/libintl.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libsdl_native_helpers.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libsdl_main.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libguichan.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libsdl_image.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libsdl-1.2.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libapplication.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libzzip.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libsdl_ttf.so \
+/home/hydefus/x/vice_framework/project/libs/armeabi-v7a/libintl.so \
