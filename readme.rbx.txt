@@ -44,3 +44,12 @@ Atte
 Max
 hydefus@gmail.com
 
+----
+
+Instrucciones adicionales para OSX (sin usar build.sh vice)
+
+El src está actualizado para compilar en OSX
+
+cd project
+./build.osx.sh
+

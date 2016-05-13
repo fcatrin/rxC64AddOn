@@ -2,7 +2,9 @@
 
 
 LOCAL_PATH=`dirname $0`
+echo "LP1 $LOCAL_PATH"
 LOCAL_PATH=`cd $LOCAL_PATH && pwd`
+echo "LP2 $LOCAL_PATH"
 
 ln -sf libsdl-1.2.so $LOCAL_PATH/../../../obj/local/$1/libSDL.so
 

@@ -9,6 +9,7 @@ if uname -s | grep -i "linux" > /dev/null ; then
 fi
 if uname -s | grep -i "darwin" > /dev/null ; then
 	MYARCH=darwin-x86_64
+	. aliases.osx.sh
 fi
 if uname -s | grep -i "windows" > /dev/null ; then
 	MYARCH=windows-x86_64
@@ -18,7 +19,7 @@ NDK=`which ndk-build`
 NDK=`dirname $NDK`
 NDK=`readlink -f $NDK`
 
-#echo NDK $NDK
+echo NDK $NDK
 GCCPREFIX=arm-linux-androideabi
 [ -z "$NDK_TOOLCHAIN_VERSION" ] && NDK_TOOLCHAIN_VERSION=4.9
 PLATFORMVER=android-14
