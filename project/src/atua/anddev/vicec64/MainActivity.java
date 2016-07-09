@@ -93,6 +93,7 @@ import android.inputmethodservice.Keyboard;
 import android.app.Notification;
 import android.app.PendingIntent;
 import java.util.TreeSet;
+import retrobox.v2.vicec64.R;
 import android.app.UiModeManager;
 
 public class MainActivity extends Activity

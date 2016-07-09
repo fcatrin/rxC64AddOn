@@ -30,7 +30,6 @@ import android.view.KeyEvent;
 import android.view.Window;
 import android.view.WindowManager;
 import android.os.Environment;
-
 import android.widget.TextView;
 import java.net.URLConnection;
 import java.net.HttpURLConnection;
@@ -42,14 +41,13 @@ import javax.net.ssl.HttpsURLConnection;
 import java.util.zip.*;
 import java.io.*;
 import android.util.Log;
-
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-
 import android.content.Context;
 import android.content.res.Resources;
 import java.util.Arrays;
+import retrobox.v2.vicec64.R;
 import android.text.SpannedString;
 import android.app.AlertDialog;
 import android.content.DialogInterface;

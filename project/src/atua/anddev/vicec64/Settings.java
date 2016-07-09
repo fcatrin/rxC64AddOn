@@ -68,6 +68,7 @@ import android.util.DisplayMetrics;
 import android.net.Uri;
 import java.util.concurrent.Semaphore;
 import java.util.Arrays;
+import retrobox.v2.vicec64.R;
 import android.graphics.Color;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorEvent;

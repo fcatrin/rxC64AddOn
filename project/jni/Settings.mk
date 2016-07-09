@@ -16,7 +16,7 @@ SDL_JAVA_PACKAGE_PATH := atua_anddev_vicec64
 # Typically /sdcard/alienblaster 
 # Or /data/data/de.schwardtnet.alienblaster/files if you're planning to unpack data in application private folder
 # Your application will just set current directory there
-SDL_CURDIR_PATH := atua.anddev.vicec64
+SDL_CURDIR_PATH := retrobox.v2.vicec64
 
 # Android Dev Phone G1 has trackball instead of cursor keys, and 
 # sends trackball movement events as rapid KeyDown/KeyUp events,

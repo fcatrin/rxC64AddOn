@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	  package="atua.anddev.vicec64"
+	  package="retrobox.v2.vicec64"
+	  android:sharedUserId="psychoworld.retrobox.v2"
 	  android:versionCode="24003"
 	  android:versionName="2.4.0.03"
 	  android:installLocation="auto"
 >
 	<application android:label="@string/app_name"
 				 android:icon="@drawable/icon"
-				 android:debuggable="false"
 				 android:allowBackup="true"
 				 android:banner="@drawable/banner"
 				 android:isGame="true"
 	>
-		<activity android:name=".MainActivity"
+		<activity android:name="atua.anddev.vicec64.MainActivity"
 				  android:label="@string/app_name"
 				  android:alwaysRetainTaskState="true"
 				  android:launchMode="singleTask"
@@ -28,7 +28,7 @@
 			</intent-filter>
 		</activity>
 		<meta-data android:name="com.sec.android.support.multiwindow" android:value="true" /> <!-- Samsung's multiwindow -->
-		<activity android:name=".RestartMainActivity"
+		<activity android:name="atua.anddev.vicec64.RestartMainActivity"
 				  android:label="@string/app_name"
 				  android:alwaysRetainTaskState="true"
 				  android:launchMode="singleTask"
@@ -36,7 +36,7 @@
 				  android:windowSoftInputMode="stateUnspecified"
 				  android:process=":RestartMainActivity"
 		/>
-		<service android:name=".DummyService"
+		<service android:name="atua.anddev.vicec64.DummyService"
 				 android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
 				 android:enabled="true"
 		/>

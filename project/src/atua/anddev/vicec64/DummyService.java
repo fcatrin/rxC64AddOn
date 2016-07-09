@@ -77,6 +77,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import java.util.concurrent.Semaphore;
+import retrobox.v2.vicec64.R;
 import android.content.pm.ActivityInfo;
 import android.view.Display;
 import android.util.DisplayMetrics;
