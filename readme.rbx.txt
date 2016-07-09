@@ -53,3 +53,5 @@ El src está actualizado para compilar en OSX
 cd project
 ./build.osx.sh
 
+En una oportunidad la compilación x86 falló porque estaba usando el toolchain de osx
+Se arregló eliminando vice-2.4/x86 para que lo volviera a crear
