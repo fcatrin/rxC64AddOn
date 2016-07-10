@@ -44,7 +44,20 @@ Atte
 Max
 hydefus@gmail.com
 
-----
+-------------------
+Entorno de Franco
+-------------------
+Rebuild completo a partir de src actual (ej, por cambio de directorio o nombre de paquete)
+
+# commit everything in src, it will be overwritten
+
+find project/application/vice/vice -name "Makefile" | xargs rm
+
+bash (to avoid closing when source ends)
+source project/jni/application/aliases.osx.sh
+source ./build.sh vice
+svn revert src
+------
 
 Instrucciones adicionales para OSX (sin usar build.sh vice)
 
