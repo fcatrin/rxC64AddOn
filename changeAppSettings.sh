@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# never destroy the source again
+exit
+
 AUTO=a
 CHANGED=
 JAVA_SRC_PATH=project/java

@@ -1,6 +1,10 @@
 #!/bin/sh
 #set -eu # Bashism, does not work with default shell on Ubuntu 12.04
 
+if uname -s | grep -i "darwin" > /dev/null ; then
+  source project/jni/application/aliases.osx.sh
+fi
+
 install_apk=false
 run_apk=false
 sign_apk=false
@@ -72,7 +76,7 @@ fi
 
 [ -e project/local.properties ] || {
 	android update project -p project || exit 1
-	rm -f project/src/Globals.java
+	# rm -f project/src/Globals.java
 }
 
 NDK_TOOLCHAIN_VERSION=$GCCVER
@@ -174,7 +178,11 @@ strip_libs() {
 	return 0
 }
 
-cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU V=1 && \
+cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU V=1
+
+# stop building here. Build is made through Eclipse
+exit
+# && \
 	strip_libs && \
 	cd .. && ./copyAssets.sh && cd project && \
 	{	if $build_release ; then \
