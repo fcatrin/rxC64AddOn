@@ -91,7 +91,7 @@ if ( grep "package $AppFullName;" project/src/Globals.java > /dev/null 2>&1 && \
 		[ -z "`find project/java/* project/AndroidManifestTemplate.xml -cnewer project/src/Globals.java`" ] ) ; then true ; else
 	./changeAppSettings.sh -a || exit 1
 	sleep 1
-	touch project/src/Globals.java
+	# touch project/src/Globals.java
 fi
 if $build_release ; then
 	sed -i 's/android:debuggable="true"/android:debuggable="false"/g' project/AndroidManifest.xml
