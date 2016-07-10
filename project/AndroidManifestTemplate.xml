@@ -18,6 +18,7 @@
 				  android:launchMode="singleTask"
 				  android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
 				  android:windowSoftInputMode="stateUnspecified"
+				  android:screenOrientation="sensorLandscape"
 		>
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
@@ -26,6 +27,11 @@
 				<action android:name="com.sec.android.airview.HOVER" /> <!-- Stupid Samsung requires their own intent for finger-hover events -->
 				<category android:name="android.intent.category.LEANBACK_LAUNCHER" /> <!-- Android TV requires this -->
 			</intent-filter>
+			<intent-filter>
+				<action android:name="retrobox.v2.c64" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:mimeType="text/plain"/>
+			</intent-filter>			
 		</activity>
 		<!-- ==ADMOB== --> <activity android:name="com.google.android.gms.ads.AdActivity" android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"/>
 		<!-- ==ADMOB== --> <meta-data android:name="com.google.android.gms.version" android:value="4323000" /> <!-- Change this value to the actual Google Play SDK version -->
@@ -40,14 +46,16 @@
 				  android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
 				  android:windowSoftInputMode="stateUnspecified"
 				  android:process=":RestartMainActivity"
+				  android:screenOrientation="sensorLandscape"
 		/>
 		<service android:name="atua.anddev.vicec64.DummyService"
 				 android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|screenLayout|fontScale|uiMode|orientation|screenSize|smallestScreenSize|layoutDirection"
 				 android:enabled="true"
+				 android:screenOrientation="sensorLandscape"
 		/>
 	</application>
 
-	<uses-sdk android:minSdkVersion="9" android:targetSdkVersion="23"/>
+	<uses-sdk android:minSdkVersion="15" android:targetSdkVersion="23"/>
 	<!-- ==INTERNET== --> <uses-permission android:name="android.permission.INTERNET" />
 	<!-- ==EXTERNAL_STORAGE== --> <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 	<!-- ==EXTERNAL_STORAGE== --> <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />

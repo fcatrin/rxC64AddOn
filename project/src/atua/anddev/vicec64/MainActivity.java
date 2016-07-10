@@ -52,6 +52,7 @@ import android.view.MenuItem;
 import android.view.Menu;
 import android.view.Gravity;
 import android.text.method.TextKeyListener;
+
 import java.util.LinkedList;
 import java.io.SequenceInputStream;
 import java.io.BufferedInputStream;
@@ -66,17 +67,22 @@ import java.util.zip.ZipInputStream;
 import java.util.zip.CheckedInputStream;
 import java.util.zip.CRC32;
 import java.util.Set;
+
 import android.text.SpannedString;
+
 import java.io.BufferedReader;
 import java.io.BufferedInputStream;
 import java.io.InputStreamReader;
+
 import android.view.inputmethod.InputMethodManager;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+
 import java.util.concurrent.Semaphore;
+
 import android.content.pm.ActivityInfo;
 import android.view.Display;
 import android.util.DisplayMetrics;
@@ -92,16 +98,27 @@ import android.inputmethodservice.KeyboardView;
 import android.inputmethodservice.Keyboard;
 import android.app.Notification;
 import android.app.PendingIntent;
+
 import java.util.TreeSet;
+
 import retrobox.v2.vicec64.R;
 import android.app.UiModeManager;
 
 public class MainActivity extends Activity
 {
+	static boolean isRetroBox = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
+		
+		String media = getIntent().getStringExtra("media"); 
+		isRetroBox = media != null;
+		if (isRetroBox) {
+			Globals.StartupMenuButtonTimeout = 0;
+			Globals.KeepAspectRatio = getIntent().getBooleanExtra("keepAspect", true);
+			Globals.AutoExec = " -autostart " + media;
+		}
 
 		instance = this;
 		// fullscreen mode
@@ -123,7 +140,7 @@ public class MainActivity extends Activity
 
 		final Semaphore loadedLibraries = new Semaphore(0);
 
-		if( Globals.StartupMenuButtonTimeout > 0 )
+		if( Globals.StartupMenuButtonTimeout > 0)
 		{
 			_btn = new Button(this);
 			_btn.setEnabled(false);
@@ -150,15 +167,18 @@ public class MainActivity extends Activity
 		_layout.addView(_layout2);
 
 		ImageView img = new ImageView(this);
+		
+		if (!isRetroBox) {
 
-		img.setScaleType(ImageView.ScaleType.FIT_CENTER /* FIT_XY */ );
-		try
-		{
-			img.setImageDrawable(Drawable.createFromStream(getAssets().open("logo.png"), "logo.png"));
-		}
-		catch(Exception e)
-		{
-			img.setImageResource(R.drawable.publisherlogo);
+			img.setScaleType(ImageView.ScaleType.FIT_CENTER /* FIT_XY */ );
+			try
+			{
+				img.setImageDrawable(Drawable.createFromStream(getAssets().open("logo.png"), "logo.png"));
+			}
+			catch(Exception e)
+			{
+				img.setImageResource(R.drawable.publisherlogo);
+			}
 		}
 		img.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
 		_layout.addView(img);
@@ -167,10 +187,12 @@ public class MainActivity extends Activity
 		_videoLayout.addView(_layout);
 
 		_ad = new Advertisement(this);
-		if( _ad.getView() != null )
-		{
-			_videoLayout.addView(_ad.getView());
-			_ad.getView().setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM | Gravity.RIGHT));
+		if (!isRetroBox) {
+			if( _ad.getView() != null )
+			{
+				_videoLayout.addView(_ad.getView());
+				_ad.getView().setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.BOTTOM | Gravity.RIGHT));
+			}
 		}
 		
 		setContentView(_videoLayout);

@@ -22,6 +22,7 @@ freely, subject to the following restrictions:
 
 package atua.anddev.vicec64;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
@@ -294,7 +295,10 @@ class Settings
 			Globals.ClickMouseWithDpad = settingsFile.readBoolean();
 			Globals.ClickScreenPressure = settingsFile.readInt();
 			Globals.ClickScreenTouchspotSize = settingsFile.readInt();
-			Globals.KeepAspectRatio = settingsFile.readBoolean();
+			boolean keepAspectRatio = settingsFile.readBoolean();
+			if (!MainActivity.isRetroBox) {
+				Globals.KeepAspectRatio = keepAspectRatio; 
+			}
 			Globals.MoveMouseWithJoystickSpeed = settingsFile.readInt();
 			Globals.MoveMouseWithJoystickAccel = settingsFile.readInt();
 			int readKeys = settingsFile.readInt();
@@ -780,6 +784,7 @@ class Settings
 				return p.getExternalFilesDir(null).getAbsolutePath();
 			}
 		}
+		@TargetApi(Build.VERSION_CODES.KITKAT)
 		private static class Kitkat extends Froyo
 		{
 			private static class Holder

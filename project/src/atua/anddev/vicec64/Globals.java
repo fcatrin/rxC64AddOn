@@ -50,6 +50,7 @@ class Globals
 	public static boolean CreateService = false;
 	public static String ReadmeText = "^You may press \"Home\" now - the data will be downloaded in background";
 	public static String CommandLine = "vice -sdlcustomw 320 -sdlcustomh 240 -sdllimitmode 1 +truedrive";
+	public static String AutoExec = "";
 	public static boolean AppUsesMouse = true;
 	public static boolean AppNeedsTwoButtonMouse = false;
 	public static boolean RightMouseButtonLongPress = false;
