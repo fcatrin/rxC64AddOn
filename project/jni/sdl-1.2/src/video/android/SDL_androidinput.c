@@ -983,7 +983,7 @@ JAVA_EXPORT_NAME(DemoGLSurfaceView_nativeKey) ( JNIEnv*  env, jobject thiz, jint
 	}
 
 	keycode = TranslateKey(key);
-	//__android_log_print(ANDROID_LOG_INFO, "libSDL","nativeKey %d action %d translated %d unicode %d", key, action, keycode, unicode);
+	__android_log_print(ANDROID_LOG_INFO, "libSDL","nativeKey %d action %d translated %d unicode %d", key, action, keycode, unicode);
 
 	if( keycode == SDLK_NO_REMAP || (keycode == SDLK_UNKNOWN && unicode == 0) )
 		return 0;
