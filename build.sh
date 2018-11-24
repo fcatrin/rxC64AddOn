@@ -9,7 +9,7 @@ install_apk=false
 run_apk=false
 sign_apk=false
 build_release=true
-quick_rebuild=false
+quick_rebuild=true
 
 if [ "$#" -gt 0 -a "$1" = "-s" ]; then
 	shift
