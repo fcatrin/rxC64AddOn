@@ -178,7 +178,7 @@ strip_libs() {
 	return 0
 }
 
-cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU V=1
+cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU # V=1
 
 # stop building here. Build is made through Eclipse
 exit
