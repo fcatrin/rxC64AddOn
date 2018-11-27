@@ -9,7 +9,7 @@ install_apk=false
 run_apk=false
 sign_apk=false
 build_release=true
-quick_rebuild=true
+quick_rebuild=false
 
 if [ "$#" -gt 0 -a "$1" = "-s" ]; then
 	shift
@@ -178,13 +178,10 @@ strip_libs() {
 	return 0
 }
 
-cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU # V=1
-
-# stop building here. Build is made through Eclipse
-exit
-# && \
-	strip_libs && \
-	cd .. && ./copyAssets.sh && cd project && \
+cd project && env PATH=$NDKBUILDPATH BUILD_NUM_CPUS=$NCPU nice -n19 ndk-build -j$NCPU && \
+strip_libs && \
+cd .. && ./copyAssets.sh && cd project && \
+	
 	{	if $build_release ; then \
 			$quick_rebuild && { \
 				ln -s -f libs lib ; \
