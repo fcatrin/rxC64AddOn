@@ -53,7 +53,9 @@ import android.view.Menu;
 import android.view.Gravity;
 import android.text.method.TextKeyListener;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.io.SequenceInputStream;
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -101,20 +103,27 @@ import android.app.PendingIntent;
 
 import java.util.TreeSet;
 
+import retrobox.utils.ListOption;
+import retrobox.utils.RetroBoxDialog;
+import retrobox.utils.RetroBoxUtils;
 import retrobox.v2.vicec64.R;
+import retrobox.vinput.overlay.OverlayExtra;
+import xtvapps.core.AndroidFonts;
+import xtvapps.core.Callback;
+import xtvapps.core.content.KeyValue;
 import android.app.UiModeManager;
 
 public class MainActivity extends Activity
 {
-	static boolean isRetroBox = false;
+	static boolean isRetroX = false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
 		
 		String media = getIntent().getStringExtra("media"); 
-		isRetroBox = media != null;
-		if (isRetroBox) {
+		isRetroX = media != null;
+		if (isRetroX) {
 			Globals.StartupMenuButtonTimeout = 0;
 			Globals.KeepAspectRatio = getIntent().getBooleanExtra("keepAspect", true);
 			Globals.AutoExec = " -autostart " + media;
@@ -168,7 +177,7 @@ public class MainActivity extends Activity
 
 		ImageView img = new ImageView(this);
 		
-		if (!isRetroBox) {
+		if (!isRetroX) {
 
 			img.setScaleType(ImageView.ScaleType.FIT_CENTER /* FIT_XY */ );
 			try
@@ -187,7 +196,7 @@ public class MainActivity extends Activity
 		_videoLayout.addView(_layout);
 
 		_ad = new Advertisement(this);
-		if (!isRetroBox) {
+		if (!isRetroX) {
 			if( _ad.getView() != null )
 			{
 				_videoLayout.addView(_ad.getView());
@@ -371,7 +380,9 @@ public class MainActivity extends Activity
 		_inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
 		_videoLayout = new FrameLayout(this);
 		SetLayerType.get().setLayerType(_videoLayout);
+		
 		setContentView(_videoLayout);
+
 		mGLView = new DemoGLSurfaceView(this);
 		SetLayerType.get().setLayerType(mGLView);
 		FrameLayout.LayoutParams margin = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
@@ -393,6 +404,11 @@ public class MainActivity extends Activity
 		DimSystemStatusBar.get().dim(_videoLayout);
 		//DimSystemStatusBar.get().dim(mGLView);
 
+		if (isRetroX) {
+	        getLayoutInflater().inflate(R.layout.modal_dialog_list, _videoLayout);
+	        AndroidFonts.setViewFont(findViewById(R.id.txtDialogListTitle), RetroBoxUtils.FONT_DEFAULT_M);
+		}
+		
 		Rect r = new Rect();
 		_videoLayout.getWindowVisibleDisplayFrame(r);
 		mGLView.nativeScreenVisibleRect(r.left, r.top, r.right, r.bottom);
@@ -985,6 +1001,12 @@ public class MainActivity extends Activity
 	@Override
 	public boolean onKeyDown(int keyCode, final KeyEvent event)
 	{
+		
+		if( keyCode == KeyEvent.KEYCODE_BACK && isRetroX) {
+			openRetroBoxMenu();
+		}
+		
+		
 		if( keyCode == KeyEvent.KEYCODE_BACK )
 		{
 			if( (event.getSource() & InputDevice.SOURCE_MOUSE) == InputDevice.SOURCE_MOUSE )
@@ -1552,6 +1574,85 @@ public class MainActivity extends Activity
 
 	public LinkedList<Integer> textInput = new LinkedList<Integer> ();
 	public static MainActivity instance = null;
+	
+	private void openRetroBoxMenu() {
+		onPause();
+		
+		List<ListOption> options = new ArrayList<ListOption>();
+		
+        options.add(new ListOption("", getString(R.string.emu_opt_cancel)));
+        /*
+        options.add(new ListOption("load", getString(R.string.emu_opt_state_load)));
+        options.add(new ListOption("save", getString(R.string.emu_opt_state_save)));
+        
+        if (disks.size()>1) {
+        	options.add(new ListOption("mount", getString(R.string.emu_opt_disk_change)));
+        }
+        */
+        
+        options.add(new ListOption("keyboard", getString(R.string.emu_opt_open_keyboard)));
+        options.add(new ListOption("keymap", getString(R.string.emu_opt_open_mapper)));
+        options.add(new ListOption("advanced", "Advanced Settings..."));
+        options.add(new ListOption("quit", getString(R.string.emu_opt_quit)));
+        
+        RetroBoxDialog.showListDialog(this, getString(R.string.emu_opt_title), options, new Callback<KeyValue>() {
+			
+			@Override
+			public void onResult(KeyValue result) {
+				String key = result.getKey();
+				if (key.equals("quit")) {
+					uiQuit();
+					return;
+				} else if (key.equals("advanced")) {
+					uiInternalMenu();
+				}
+/*					
+				} else if (key.equals("load")) {
+					uiSelectSaveState(true);
+					return;
+				} else if (key.equals("save")) {
+					uiSelectSaveState(false);
+					return;
+					
+				} else if (key.equals("keyboard")) {
+					uiShowKeyboard();
+				} else if (key.equals("keymap")) {
+					uiOpenKeyMapper();
+					return;
+					*/
+					/*
+				} else if (key.equals("mount")) {
+					uiChangeDisk();
+					return;
+				}
+					*/
+				onResume();
+			}
+
+			@Override
+			public void onError() {
+				super.onError();
+				onResume();
+			}
+		});
+	}
+
+    private void uiQuit() {
+    	finish();
+    }
+    
+    private void uiInternalMenu() {
+    	new Handler().postDelayed(new Runnable(){
+
+			@Override
+			public void run() {
+				if( mGLView != null )		{
+					mGLView.nativeKey( KeyEvent.KEYCODE_BACK, 1, 0 );
+				}
+			}}, 1000);
+
+    }
+
 }
 
 // *** HONEYCOMB / ICS FIX FOR FULLSCREEN MODE, by lmak ***

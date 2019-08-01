@@ -296,7 +296,7 @@ class Settings
 			Globals.ClickScreenPressure = settingsFile.readInt();
 			Globals.ClickScreenTouchspotSize = settingsFile.readInt();
 			boolean keepAspectRatio = settingsFile.readBoolean();
-			if (!MainActivity.isRetroBox) {
+			if (!MainActivity.isRetroX) {
 				Globals.KeepAspectRatio = keepAspectRatio; 
 			}
 			Globals.MoveMouseWithJoystickSpeed = settingsFile.readInt();
